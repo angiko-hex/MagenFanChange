@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hu" ng-app="calcApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mágen az annyi</title>
+    <style>
+        body { background-image: url("ChatGPT\ Image\ 2026.\ ápr.\ 24.\ 21_15_49.png");
+    }
+.glass1 { background-color: rgba(250, 235, 215, 0.772) ;
+border-radius: 20px;
+  box-shadow: inset 0 0 15px rgba(135, 135, 135, .1), 0 0 18px 3px rgba(0, 0, 0, .3);
+}
+        .containerMai{  margin-right: 30px;
+            padding-left: 20px;
+            width: 600px;
+            height: 300px;
+        display:flex;
+        float: left; 
+        align-items: center; 
+    }
+     #maift  { margin-left: auto; 
+    padding-right: 20px; }
+    .containeRegi{ margin-right: 30px;
+            padding-left: 20px;
+            width: 600px;
+            height: 300px;
+        display:flex; 
+        float: right;
+        align-items: center; 
+    }
+     #regft { margin-left: auto;padding-right: 20px;
+    }
+    #regft p, #maift p { font-size: larger; color: brown;}
+    footer { padding: 5px;
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(96, 19, 19);
+ color: rgb(255, 245, 225);
+   
+}
+   header { 
+   position: sticky;
+   left: 0;
+   top: 0;
+   width: 100%;
+   
+   background-color: rgb(96, 19, 19);
+   color: rgb(255, 245, 225); } 
+
+        h3 { display: flex; justify-content: center; align-items: center; text-align: center;}
+    </style>
+</head>
+<body ng-controller="magenCalculator">
+    <header>
+    <h3><p>Érdekel mennyit érne ma a Szomszédok sorozatban elhangzott összeg? Vagy visszautaznál a múltba, hogy megtudd, elegendő lenne-e a zsebpénzed egy tévére?
+        <br>
+    Semmi gond! Írd be az átváltani kívánt összeget, és lássuk, miben változott a forint 1987 óta!</p>  </h3>
+    </header>
+    
+    <div class="containerMai glass1">
+        <label for="">Mai forint:</label> <br>
+        <input type="number" ng-model="maiFt" placeholder="0">
+        <br>
+        <div id="maift">
+        <p ng-if="maiFt>0"> <strong> {{maiFt/regen}} forint a Szomszédokban </strong></p>
+        </div>
+    </div>
+
+     <div class="containeRegi glass1">
+        <label for="">Forint a szomszédokban: </label>
+        <br>
+        <input type="number" ng-model="regiFt" placeholder="0">
+        <br>
+        <div id="regft">
+        <p ng-if="regiFt>0"><strong> {{regiFt*regen}}</strong> forint a mai értéke</p>
+    </div>
+    </div>
+    <footer > Mágenbeszélgetések rajongó által készült - @kave_palinka</footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        angular.module("calcApp",[]).controller("magenCalculator",function($scope){
+            $scope.maiFt=0;
+            $scope.regiFt=0;
+            $scope.regen=37.5;
+        })
+    </script>
+</body>
+</html>
