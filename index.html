@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="hu" ng-app="calcApp">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mágen az annyi</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-image: url("ChatGPT Image 2026. ápr. 24. 21_15_49.png");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        font-family: sans-serif;
+        padding-bottom: 60px; /* footer magasságának helye */
+      }
+
+      /* ── HEADER ── */
+      header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background-color: rgb(96, 19, 19);
+        color: rgb(255, 245, 225);
+        z-index: 100;
+        padding: 12px 16px;
+      }
+
+      header h3 {
+        font-size: clamp(13px, 2.2vw, 16px);
+        font-weight: normal;
+        text-align: center;
+        line-height: 1.5;
+      }
+
+      /* ── GLASS STÍLUS ── */
+      .glass1 {
+        background-color: rgba(250, 235, 215, 0.85);
+        border-radius: 20px;
+        box-shadow: inset 0 0 15px rgba(135, 135, 135, 0.1),
+                    0 0 18px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ── FŐ TARTALOM ── */
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 16px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      /* ── KÁRTYÁK ── */
+      .card {
+        width: 100%;
+        padding: 24px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .card label {
+        font-size: 16px;
+        color: rgb(80, 20, 20);
+        font-weight: bold;
+      }
+
+      .card input[type="number"] {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 18px;
+        border: 2px solid rgba(96, 19, 19, 0.3);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.6);
+        color: #333;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .card input[type="number"]:focus {
+        border-color: rgb(96, 19, 19);
+      }
+
+      .card .eredmeny {
+        font-size: 18px;
+        color: brown;
+        min-height: 28px;
+        padding: 4px 0;
+      }
+
+      /* ── NAGYOBB KÉPERNYŐN: egymás mellé ── */
+      @media (min-width: 600px) {
+        main {
+          flex-direction: row;
+          align-items: stretch;
+        }
+
+        .card {
+          flex: 1;
+        }
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: rgb(96, 19, 19);
+        color: rgb(255, 245, 225);
+        text-align: center;
+        padding: 10px 16px;
+        font-size: 14px;
+        z-index: 100;
+      }
+    </style>
+  </head>
+  <body ng-controller="magenCalculator">
+
+    <header>
+      <h3>
+        Érdekel mennyit érne ma a Szomszédok sorozatban elhangzott összeg?
+        Vagy visszautaznál a múltba, hogy megtudd, elegendő lenne-e a zsebpénzed egy tévére?
+        <br>
+        Semmi gond! Írd be az átváltani kívánt összeget, és lássuk, miben változott a forint 1987 óta!
+      </h3>
+    </header>
+
+    <main>
+
+      <div class="card glass1">
+        <label for="maiFt">Mai forint:</label>
+        <input type="number" id="maiFt" ng-model="maiFt" placeholder="0">
+        <div class="eredmeny">
+          <span ng-if="maiFt > 0">
+            <strong>{{ (maiFt / regen) | number:2 }} forint</strong> a Szomszédokban
+          </span>
+        </div>
+      </div>
+
+      <div class="card glass1">
+        <label for="regiFt">Forint a Szomszédokban:</label>
+        <input type="number" id="regiFt" ng-model="regiFt" placeholder="0">
+        <div class="eredmeny">
+          <span ng-if="regiFt > 0">
+            <strong>{{ (regiFt * regen) | number:0 }} forint</strong> a mai értéke
+          </span>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      Mágenbeszélgetések – rajongó által készült &nbsp;|&nbsp; @kave_palinka
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+      angular.module('calcApp', [])
+        .controller('magenCalculator', function ($scope) {
+          $scope.maiFt  = 0;
+          $scope.regiFt = 0;
+          $scope.regen  = 37.5;
+        });
+    </script>
+
+  </body>
+</html>
